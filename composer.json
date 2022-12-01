@@ -1,0 +1,16 @@
+{
+    "name": "travacry/test.itglobal",
+    "description": "code review",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Travacry\\TestItglobal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alex K"
+        }
+    ],
+    "require": {}
+}
