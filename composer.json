@@ -12,5 +12,7 @@
             "name": "Alex K"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpstan/phpstan": "^1.9"
+    }
 }

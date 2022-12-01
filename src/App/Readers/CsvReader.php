@@ -7,11 +7,12 @@ namespace App\Readers;
 final class CsvReader implements Reader
 {
     /**
+     * @return array<int, mixed>
      * @throws \Exception
      */
-    function read($fileName): array
+    function read(string $pathToFile): array
     {
-        $contents = file_get_contents($fileName);
+        $contents = file_get_contents($pathToFile);
         if ($contents === false) {
             throw new \Exception('Information lost file not correct');
         }

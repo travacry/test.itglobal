@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace App\Helper;
 
+use App\Helper\Path;
+
 final class FileInfo
 {
+    /**
+     * @var array<string, string>
+     */
     protected static array $map = [];
     private string $dir;
     private string $fileName;
@@ -16,7 +21,7 @@ final class FileInfo
      * @param string $path
      * @throws \Exception
      */
-    public function __construct(private string $path)
+    public function __construct(private readonly string $path)
     {
         $this->dir = $this->getDir();
         $this->fileName = $this->getFileName();

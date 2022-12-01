@@ -6,15 +6,22 @@ namespace App\Readers;
 
 final class JsonReader implements Reader
 {
+
     /**
+     * @param string $pathToFile
+     * @return array<int, string|null>
      * @throws \Exception
      */
-    function read($fileName): array
+    function read(string $pathToFile): array
     {
-        $contents = file_get_contents($fileName);
+        $contents = file_get_contents($pathToFile);
         if ($contents === false) {
             throw new \Exception('Information lost file not correct');
         }
-        return json_decode($contents, true);
+        $data = json_decode($contents, true);
+        if (!is_array($data)) {
+            throw new \Exception('Incorrect conversion file is corrupted or data is invalid.');
+        }
+        return $data;
     }
 }

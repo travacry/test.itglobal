@@ -6,5 +6,9 @@ namespace App\Readers;
 
 interface Reader
 {
-    public function read(string $fileName): array;
+    /**
+     * @param string $pathToFile
+     * @return array<int, mixed>
+     */
+    public function read(string $pathToFile): array;
 }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Readers;
+
 use App\Helper\FileInfo;
 
 final class ChoiceClassNameByExtension implements ChoiceInterface
