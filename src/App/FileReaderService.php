@@ -14,8 +14,8 @@ class FileReaderService
     protected ChoiceClassNameByExtension $choice;
 
     /**
+     * @throws Helper\FileException
      * @throws Readers\ReadersException
-     * @throws \Exception
      */
     public function read(string $pathToFile) : void {
 

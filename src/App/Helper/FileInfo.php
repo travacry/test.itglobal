@@ -19,7 +19,7 @@ final class FileInfo
 
     /**
      * @param string $path
-     * @throws \Exception
+     * @throws FileException
      */
     public function __construct(private readonly string $path)
     {
@@ -30,7 +30,7 @@ final class FileInfo
     }
 
     /**
-     * @throws \Exception
+     * @throws FileException
      */
     public function getFileName() : string {
 
@@ -48,7 +48,7 @@ final class FileInfo
     }
 
     /**
-     * @throws \Exception
+     * @throws FileException
      */
     public function getDir() : string {
 
