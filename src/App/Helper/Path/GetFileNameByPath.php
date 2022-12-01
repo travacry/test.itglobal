@@ -8,7 +8,8 @@ use SplFileInfo;
 
 final class GetFileNameByPath
 {
-    static function by(string $path): string {
+    public static function by(string $path): string
+    {
         return (new SplFileInfo($path))->getFilename();
     }
 }

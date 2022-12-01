@@ -18,7 +18,8 @@ final class ChoiceClassNameByExtension implements ChoiceInterface
     /**
      * @throws ReadersException
      */
-    public function getClassName() : string {
+    public function getClassName(): string
+    {
         if (empty($this->choice)) {
             throw new ReadersException('Wrong choice : ' . $this->choice);
         }

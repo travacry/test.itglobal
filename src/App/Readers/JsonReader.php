@@ -6,13 +6,12 @@ namespace App\Readers;
 
 final class JsonReader implements Reader
 {
-
     /**
      * @param string $pathToFile
      * @return array<int, string|null>
      * @throws ReadersException
      */
-    function read(string $pathToFile): array
+    public function read(string $pathToFile): array
     {
         $contents = file_get_contents($pathToFile);
         if ($contents === false) {

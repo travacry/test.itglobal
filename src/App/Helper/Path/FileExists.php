@@ -8,7 +8,8 @@ use SplFileInfo;
 
 final class FileExists
 {
-    static function by(string $path): bool {
+    public static function by(string $path): bool
+    {
         return (new SplFileInfo($path))->isFile();
     }
 }

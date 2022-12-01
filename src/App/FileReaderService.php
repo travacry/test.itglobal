@@ -17,8 +17,8 @@ class FileReaderService
      * @throws Helper\FileException
      * @throws Readers\ReadersException
      */
-    public function read(string $pathToFile) : void {
-
+    public function read(string $pathToFile): void
+    {
         $this->fileInfo = new FileInfo($pathToFile);
         $this->choice = new ChoiceClassNameByExtension($this->fileInfo);
 

@@ -32,8 +32,8 @@ final class FileInfo
     /**
      * @throws FileException
      */
-    public function getFileName() : string {
-
+    public function getFileName(): string
+    {
         if (!empty($this->fileName)) {
             return $this->fileName;
         }
@@ -50,8 +50,8 @@ final class FileInfo
     /**
      * @throws FileException
      */
-    public function getDir() : string {
-
+    public function getDir(): string
+    {
         if (!empty($this->dir)) {
             return $this->dir;
         }
@@ -69,8 +69,8 @@ final class FileInfo
         return $dir;
     }
 
-    public function getExtension() : string {
-
+    public function getExtension(): string
+    {
         if (!empty($this->extension)) {
             return $this->extension;
         }
@@ -82,5 +82,4 @@ final class FileInfo
     {
         return $this->fullPath;
     }
-
 }

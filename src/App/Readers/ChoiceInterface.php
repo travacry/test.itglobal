@@ -6,5 +6,5 @@ namespace App\Readers;
 
 interface ChoiceInterface
 {
-    function getClassName(): string;
+    public function getClassName(): string;
 }

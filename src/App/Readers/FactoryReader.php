@@ -21,8 +21,8 @@ final class FactoryReader implements FactoryReaderInterface
     /**
      * @throws ReadersException
      */
-    private function get(string $className) : Reader {
-
+    private function get(string $className): Reader
+    {
         if (isset(self::$map[$className])) {
             return self::$map[$className];
         }
@@ -38,7 +38,8 @@ final class FactoryReader implements FactoryReaderInterface
     /**
      * @throws ReadersException
      */
-    public function created(ChoiceInterface $choice): Reader {
+    public function created(ChoiceInterface $choice): Reader
+    {
         $className = $choice->getClassName();
         if (array_key_exists($className, $this->available) === false) {
             throw new ReadersException('Reader class selected incorrectly : '. $className);
@@ -50,5 +51,4 @@ final class FactoryReader implements FactoryReaderInterface
         }
         return $reader;
     }
-
 }

@@ -8,7 +8,8 @@ use SplFileInfo;
 
 final class GetExtensionByPath
 {
-    public static function by(string $path): string {
+    public static function by(string $path): string
+    {
         return (new SplFileInfo($path))->getExtension();
     }
 }
