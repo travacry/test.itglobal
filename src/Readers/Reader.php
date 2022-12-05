@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Readers;
+namespace PhpReader\Readers;
 
 interface Reader
 {
     /**
      * @param string $pathToFile
-     * @return array<int, mixed>
+     * @return array<string|int, mixed>
      */
     public function read(string $pathToFile): array;
 }

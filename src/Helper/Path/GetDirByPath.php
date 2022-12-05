@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Helper\Path;
+namespace PhpReader\Helper\Path;
 
 use SplFileInfo;
 
-final class GetExtensionByPath
+final class GetDirByPath
 {
     public static function by(string $path): string
     {
-        return (new SplFileInfo($path))->getExtension();
+        return (new SplFileInfo($path))->getPath();
     }
 }

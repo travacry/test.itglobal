@@ -2,27 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Helper;
+namespace PhpReader\Helper;
 
-use App\Helper\Path;
+use PhpReader\Helper\Path;
 
-final class FileInfo
+class FileInfo implements FileInfoInterface
 {
     /**
      * @var array<string, string>
      */
     protected static array $map = [];
-    private string $dir;
-    private string $fileName;
-    private string $extension;
-    private string $fullPath;
+    protected string $dir;
+    protected string $fileName;
+    protected string $extension;
+    protected string $fullPath;
+    protected string $path;
 
     /**
      * @param string $path
      * @throws FileException
      */
-    public function __construct(private readonly string $path)
+    public function set(string $path): void
     {
+        $this->path = $path;
         $this->dir = $this->getDir();
         $this->fileName = $this->getFileName();
         $this->extension = $this->getExtension();
@@ -40,7 +42,7 @@ final class FileInfo
 
         $fileName = Path\GetFileNameByPath::by($this->path);
 
-        if (!Path\FileExists::by($fileName)) {
+        if (!Path\FileExists::by($this->path)) {
             throw new FileException('No such file found.');
         }
 
@@ -81,5 +83,10 @@ final class FileInfo
     public function getFullPath(): string
     {
         return $this->fullPath;
+    }
+
+    public function isEmpty(): bool
+    {
+        return empty($this->fullPath);
     }
 }

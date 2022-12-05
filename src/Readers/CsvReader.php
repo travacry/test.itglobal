@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Readers;
+namespace PhpReader\Readers;
 
-final class CsvReader implements Reader
+class CsvReader implements Reader
 {
     /**
      * @return array<int, mixed>

@@ -1,0 +1,114 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'Service
+
+class FileReaderService {
+
+    - FileInfo $fileInfo
+    - ChoiceClassNameByExtension $choice
+    - FileFactoryReader $factoryReader
+
+    + FileReaderService(\n FileInfoInterface $fileInfo,\n ChoiceInterface $choice, \n FactoryReaderInterface $factoryReader)
+    + read(string $pathToFile)
+}
+
+'// Helper
+
+class DirExists {
+    + function by(string $path): bool
+}
+
+class FileExists {
+    + by(string $path): bool
+}
+
+class GetDirByPath {
+    + by(string $path): string
+}
+
+class GetExtensionByPath {
+    + by(string $path): string
+}
+
+class GetFileNameByPath {
+    + by(string $path): string
+}
+
+interface Reader {
+    read($fileName) : array;
+}
+class CsvReader {
+    + read($fileName) : array;
+}
+class JsonReader {
+    + read($fileName) : array;
+}
+
+interface ChoiceInterface {
+    + set(FileInfo $fileInfo);
+    + getClassName(): string;
+}
+
+class FileInfo {
+    + set(string $path): void;
+    + getFileName(): string;
+    + getDir(): string;
+    + getExtension(): string;
+    + getFullPath(): string;
+    + isEmpty(): bool;
+}
+
+class ChoiceClassNameByExtension {
+    + set(FileInfo $fileInfo);
+    + getClassName() : string;
+}
+
+class AvailableReaders {
+    - available : []
+    + getAvailable(): []
+}
+
+interface FactoryReaderInterface {
+    + create(ChoiceInterface $choice) : Reader
+}
+
+class FileFactoryReader {
+    + create(ChoiceInterface $choice) : Reader
+}
+
+interface AvailableReadersInterface {
+    + getAvailable(): array;
+}
+
+interface FileInfoInterface {
+    + set(string $path): void;
+    + getFileName(): string;
+    + getDir(): string;
+    + getExtension(): string;
+    + getFullPath(): string;
+    + isEmpty(): bool;
+}
+
+CsvReader -up.|> Reader
+JsonReader -up.|> Reader
+ChoiceClassNameByExtension -up.|> ChoiceInterface
+
+FileInfo -right..|> FileInfoInterface
+AvailableReaders -up..|> AvailableReadersInterface
+FileFactoryReader *--> AvailableReaders : <<ext part data obj>>
+FileInfo ....> DirExists : <<use>>
+FileInfo ....> FileExists
+FileInfo ...> GetDirByPath
+FileInfo ...> GetExtensionByPath
+FileInfo .....> GetFileNameByPath
+'// PhpReader\Readers\Reader
+ChoiceClassNameByExtension o--> FileInfo
+FileFactoryReader -up..|> FactoryReaderInterface
+FileFactoryReader o-->Reader : <<new *Reader>>
+FileReaderService o--> FileFactoryReader
+FileReaderService o--> FileInfo
+FileReaderService o--> ChoiceClassNameByExtension
+FileFactoryReader -right..> ChoiceClassNameByExtension : <<use>>
+
+@enduml

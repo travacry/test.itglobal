@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Readers;
+namespace PhpReader\Readers;
 
-final class JsonReader implements Reader
+class JsonReader implements Reader
 {
     /**
      * @param string $pathToFile
-     * @return array<int, string|null>
+     * @return array<string|int, string|null>
      * @throws ReadersException
      */
     public function read(string $pathToFile): array

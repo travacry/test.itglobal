@@ -2,16 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Readers;
+namespace PhpReader\Readers;
 
-use App\Helper\FileInfo;
+use PhpReader\Helper\FileInfo;
+use PhpReader\Helper\FileInfoInterface;
 
 final class ChoiceClassNameByExtension implements ChoiceInterface
 {
     private string $choice;
 
-    public function __construct(FileInfo $fileInfo)
+    /**
+     * @param FileInfo $fileInfo
+     * @return void
+     * @throws ReadersException
+     */
+    public function set(FileInfoInterface $fileInfo): void
     {
+        if ($fileInfo->isEmpty()) {
+            throw new ReadersException('Use set method in class FileInfo.');
+        }
         $this->choice = ucfirst($fileInfo->getExtension()) . 'Reader';
     }
 

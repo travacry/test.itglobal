@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Readers;
+namespace PhpReader\Readers;
 
 use Exception;
 

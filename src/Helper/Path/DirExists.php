@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Helper\Path;
+namespace PhpReader\Helper\Path;
 
 use SplFileInfo;
 
-final class FileExists
+final class DirExists
 {
     public static function by(string $path): bool
     {
-        return (new SplFileInfo($path))->isFile();
+        return (new SplFileInfo($path))->isDir();
     }
 }

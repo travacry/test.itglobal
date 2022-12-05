@@ -2,21 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Readers;
+namespace PhpReader\Readers;
 
-final class FactoryReader implements FactoryReaderInterface
+final class FileFactoryReader implements FactoryReaderInterface
 {
     /**
      * @var array<string>
      */
-    protected array $available = [
-        CsvReader::class,
-        JsonReader::class
-    ];
+    private array $available;
+
     /**
      * @var array<string, Reader>
      */
-    protected static array $map = [];
+    private static array $map = [];
+
+    public function __construct(private readonly AvailableReadersInterface $readers)
+    {
+        $this->available = $this->readers->getAvailable();
+    }
 
     /**
      * @throws ReadersException
@@ -26,7 +29,10 @@ final class FactoryReader implements FactoryReaderInterface
         if (isset(self::$map[$className])) {
             return self::$map[$className];
         }
-        $reader = new $className();
+        $classNameWithNs = $this->available[$className];
+
+        $reader = new $classNameWithNs();
+
         if (!$reader instanceof Reader) {
             throw new ReadersException("Wrong type. Created object with class name $className 
             does not match what is expected. Use class names with an interface Reader.");
@@ -41,14 +47,10 @@ final class FactoryReader implements FactoryReaderInterface
     public function created(ChoiceInterface $choice): Reader
     {
         $className = $choice->getClassName();
-        if (array_key_exists($className, $this->available) === false) {
+        if (key_exists($className, $this->available) === false) {
             throw new ReadersException('Reader class selected incorrectly : '. $className);
         }
-        $reader = new ${$this->get($className)}();
-        if (!$reader instanceof Reader) {
-            throw new ReadersException("Wrong type. Created object with class name $className 
-            does not match what is expected. Use class names with an interface Reader.");
-        }
-        return $reader;
+
+        return $this->get($className);
     }
 }
