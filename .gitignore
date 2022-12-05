@@ -133,3 +133,20 @@ fabric.properties
 
 # Local config See: https://cs.symfony.com/doc/config.html
 .php-cs-fixer.php
+
+### PHPUnit ###
+# Covers PHPUnit
+# Reference: https://phpunit.de/
+
+# Generated files
+tests/.phpunit.result.cache
+.phpunit.cache
+
+# PHPUnit
+/app/phpunit.xml
+/tests/phpunit.xml
+
+# Build data
+/build/
+
+# End of https://www.toptal.com/developers/gitignore/api/phpunit
