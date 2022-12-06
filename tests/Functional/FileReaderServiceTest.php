@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpReader\Tests\Integration;
+namespace PhpReader\Tests\Functional;
 
 use PhpReader\FileReaderService;
 use PhpReader\Helper\FileInfo;
